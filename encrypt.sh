@@ -104,14 +104,21 @@ read -s -p "Enter password for $operation: " password
 echo
 
 # Perform operation
+cleanup() {
+    if [ -f "$output_file.tmp" ]; then
+        rm -f "$output_file.tmp"
+    fi
+}
+
+trap cleanup EXIT
+
 if [ "$operation" = "encrypt" ]; then
-    openssl enc -aes-256-cbc -salt -pbkdf2 -in "${input_file}" -out "${output_file}" -pass "pass:$password"
-    if [ $? -eq 0 ]; then
-        echo "File encrypted successfully: $output_file"
-    else
+    if ! openssl enc -aes-256-cbc -salt -pbkdf2 -in "${input_file}" -out "${output_file}" -pass "pass:$password"; then
         echo "Encryption failed"
+        rm -f "$output_file"
         exit 1
     fi
+    echo "File encrypted successfully: $output_file"
 else
     openssl enc -d -aes-256-cbc -salt -pbkdf2 -in "${input_file}" -out "${output_file}" -pass "pass:$password"
     if [ $? -eq 0 ]; then
