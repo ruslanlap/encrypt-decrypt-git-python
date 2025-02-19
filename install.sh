@@ -22,9 +22,18 @@ chmod +x "$DESTINATION_PATH"
 
 # Add to PATH if needed
 if ! echo "$PATH" | grep -q "$HOME/bin"; then
-    echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
-    echo "Added $HOME/bin to PATH"
+    if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
+        echo 'export PATH="$HOME/bin:$PATH"' >> "$HOME/.bashrc"
+        source "$HOME/.bashrc"
+        echo "Added to bash configuration"
+    elif [ -n "$ZSH_VERSION" ] && [ -f "$HOME/.zshrc" ]; then
+        echo 'export PATH="$HOME/bin:$PATH"' >> "$HOME/.zshrc"
+        source "$HOME/.zshrc"
+        echo "Added to zsh configuration"
+    else
+        echo "Could not detect shell configuration"
+        echo "Please add $HOME/bin to your PATH manually"
+    fi
 fi
 
 echo "✅ Installation complete! You can now use the 'cryptonit' command."
-echo "Please restart your terminal or run: source ~/.bashrc"
