@@ -1,8 +1,6 @@
 # CRYPTONIT 🔓
 ## 🔒 AES-256-CBC Encryption/Decryption Script 🔓
 
-
-
 This script provides a simple yet secure method to encrypt and decrypt files using the AES-256-CBC algorithm with password protection.
 
 ## 📋 Table of Contents
@@ -20,10 +18,13 @@ This script provides a simple yet secure method to encrypt and decrypt files usi
 
 ## ⭐ Features
 
-- Secure AES-256-CBC encryption.
-- User-provided password for encryption.
-- Password protection with PBKDF2 key derivation.
-- Automatic output filename generation with `"_crypt"` suffix for encrypted files.
+- Secure AES-256-CBC encryption
+- User-provided password for encryption
+- Password protection with PBKDF2 key derivation
+- Automatic output filename generation with "_crypt" suffix
+- Interactive and command-line modes
+- Colorful interface with creator signature
+- Automatic cleanup of temporary files
 
 ## 📦 Requirements
 
@@ -31,9 +32,13 @@ This script provides a simple yet secure method to encrypt and decrypt files usi
 - OpenSSL library
 
 ## Quick install
-use only one command for install 'cryptonit' bin file
+Use only one command for install 'cryptonit' bin file
 ```sh
-curl -sSL https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git-python/master/install-not-bin.sh | bash
+# For stable version
+curl -sSL https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git-python/master/install.sh | bash
+
+# For latest test version with signature banner
+curl -sSL https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git-python/test/install.sh | bash
 ```
 ## ⚙️ Installation
 
