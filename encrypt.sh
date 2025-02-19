@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#LINUX AND WINDOWS VERSION
 # Display signature banner
 echo -e "\033[0;34m"
 echo "╔═══════════════════════════════════════╗"
