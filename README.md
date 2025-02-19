@@ -37,7 +37,7 @@ Use only one command for install 'cryptonit' bin file
 # For stable version
 curl -sSL https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git-python/master/install.sh | bash
 
-# For latest test version with signature banner
+# For latest test version with signature banner and easy instal to use flow
 curl -sSL https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git-python/test/install.sh | bash
 ```
 ## ⚙️ Installation
