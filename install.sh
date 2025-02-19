@@ -1,56 +1,30 @@
 #!/bin/bash
 
+# Convert line endings to Unix format (LF)
+dos2unix encrypt.sh
+dos2unix install.sh
+
 # Define variables
 BINARY_NAME="cryptonit"
-BINARY_URL="https://github.com/ruslanlap/encrypt-decrypt-git/releases/download/v1.0.1/cryptonit"
-CHECKSUM_URL="https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git/master/cryptonit.sha256"
+BINARY_URL="https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git-python/test/encrypt.sh"
 DESTINATION_DIR="$HOME/bin"
 DESTINATION_PATH="$DESTINATION_DIR/$BINARY_NAME"
 
+# Create destination directory
 mkdir -p "$DESTINATION_DIR"
 
-# Function to download and verify the checksum
-download_and_verify() {
-  echo "Downloading '$BINARY_NAME' from GitHub..."
-  curl -o "$BINARY_NAME" -L "$BINARY_URL"
-  
-  echo "Downloading checksum..."
-  curl -o "checksum.sha256" -L "$CHECKSUM_URL"
-  
-  echo "Verifying checksum..."
-  if ! sha256sum -c checksum.sha256; then
-    echo "❌ Checksum verification failed."
-    exit 1
-  fi
-}
+# Download the script
+echo "Downloading '$BINARY_NAME'..."
+curl -sSLo "$DESTINATION_PATH" "$BINARY_URL"
 
-# Download and verify the binary
-download_and_verify
-
-# Copy the binary to the destination directory
-echo "Copying '$BINARY_NAME' to '$DESTINATION_PATH'..."
-cp "$BINARY_NAME" "$DESTINATION_PATH"
-
-# Make the binary executable
-echo "Making '$DESTINATION_PATH' executable..."
+# Make the script executable
 chmod +x "$DESTINATION_PATH"
 
-# Confirm completion
-"echo "✅ Installation complete! You can now use the **cryptonit** command."
-
-# Clean up
-rm "$BINARY_NAME" checksum.sha256
-
-# Add ~/bin to the PATH if it's not already in the PATH
-if echo "$PATH" | grep -q "$HOME/bin"; then
-    echo "~/bin is already in your PATH."
-else
+# Add to PATH if needed
+if ! echo "$PATH" | grep -q "$HOME/bin"; then
     echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
-    echo 'export PATH="$HOME/bin:$PATH"' >> ~/.zshrc
-    if [ -n "$BASH_VERSION" ]; then
-        source ~/.bashrc
-    elif [ -n "$ZSH_VERSION" ]; then
-        source ~/.zshrc
-    fi
-    echo "✅ Installation complete! You can now use the 'cryptonit' command."
+    echo "Added $HOME/bin to PATH"
 fi
+
+echo "✅ Installation complete! You can now use the 'cryptonit' command."
+echo "Please restart your terminal or run: source ~/.bashrc"
