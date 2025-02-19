@@ -1,8 +1,25 @@
 #!/bin/bash
 
-# Convert line endings to Unix format (LF)
-dos2unix encrypt.sh
-dos2unix install.sh
+# Check and install dos2unix if needed
+if ! command -v dos2unix &> /dev/null; then
+    echo "Installing dos2unix..."
+    if command -v apt &> /dev/null; then
+        sudo apt update && sudo apt install -y dos2unix
+    elif command -v yum &> /dev/null; then
+        sudo yum install -y dos2unix
+    elif command -v dnf &> /dev/null; then
+        sudo dnf install -y dos2unix
+    elif command -v brew &> /dev/null; then
+        brew install dos2unix
+    else
+        echo "Could not install dos2unix. Please install it manually."
+        exit 1
+    fi
+fi
+
+# Convert line endings to Unix format
+dos2unix encrypt.sh 2>/dev/null || true
+dos2unix install.sh 2>/dev/null || true
 
 # Define variables
 BINARY_NAME="cryptonit"
@@ -13,9 +30,9 @@ DESTINATION_PATH="$DESTINATION_DIR/$BINARY_NAME"
 # Create destination directory
 mkdir -p "$DESTINATION_DIR"
 
-# Download the script
+# Download the script and fix line endings using tr command
 echo "Downloading '$BINARY_NAME'..."
-curl -sSLo "$DESTINATION_PATH" "$BINARY_URL"
+curl -sSL "$BINARY_URL" | tr -d '\r' > "$DESTINATION_PATH"
 
 # Make the script executable
 chmod +x "$DESTINATION_PATH"
