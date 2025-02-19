@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Display signature banner
+echo -e "\033[0;34m"
+echo "╔═══════════════════════════════════════╗"
+echo "║           CRYPTONIT v1.0.0            ║"
+echo "║        Created by ruslanlap           ║"
+echo "║    AES-256-CBC Encryption Tool        ║"
+echo "╚═══════════════════════════════════════╝"
+echo -e "\033[0m"
+
 # Check if OpenSSL is installed
 if ! command -v openssl &> /dev/null; then
     echo -e "\033[1;31mError: OpenSSL is not installed\033[0m"
