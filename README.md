@@ -1,9 +1,23 @@
-# CRYPTONIT 🔓
-## 🔒 AES-256-CBC Encryption/Decryption Script 🔓
+<div align="center">
 
+# 🔐 CRYPTONIT
 
+### Secure File Encryption Made Simple
 
-This script provides a simple yet secure method to encrypt and decrypt files using the AES-256-CBC algorithm with password protection.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Bash](https://img.shields.io/badge/Shell-Bash-4EAA25?logo=gnu-bash&logoColor=white)](https://www.gnu.org/software/bash/)
+[![OpenSSL](https://img.shields.io/badge/Security-OpenSSL-721412)](https://www.openssl.org/)
+
+[Features](#-features) • [Quick Start](#-quick-start) • [Installation](#-installation) • [Usage](#-usage) • [Security](#-security)
+
+</div>
+
+---
+
+## 🌟 Overview
+
+CRYPTONIT is a powerful yet user-friendly file encryption tool that uses AES-256-CBC encryption to secure your sensitive files. With both interactive and command-line interfaces, it provides military-grade encryption with a simple user experience.
+
 
 ## 📋 Table of Contents
 
@@ -18,23 +32,28 @@ This script provides a simple yet secure method to encrypt and decrypt files usi
 - [📜 encrypt.py](#encryptpy)
 - [⚠️ Disclaimer](#-disclaimer)
 
-## ⭐ Features
+## ✨ Features
 
-- Secure AES-256-CBC encryption.
-- User-provided password for encryption.
-- Password protection with PBKDF2 key derivation.
-- Automatic output filename generation with `"_crypt"` suffix for encrypted files.
-
+- 🔒 **Military-grade Security**: AES-256-CBC encryption with PBKDF2
+- 🖥️ **Dual Interface**: Interactive and command-line modes
+- 🎨 **Modern UI**: Colorful interface with progress indicators
+- 🧹 **Auto-cleanup**: Secure handling of temporary files
+- 🔄 **Cross-platform**: Works on Linux, macOS, and Windows
+- 🛡️ **Password Protection**: Secure password-based encryption
+- 📁 **Smart Naming**: Automatic encrypted file management
+</div>
+------------------
 ## 📦 Requirements
 
 - Bash shell
 - OpenSSL library
 
-## Quick install
-use only one command for install 'cryptonit' bin file
-```sh
-curl -sSL https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git-python/master/install-not-bin.sh | bash
-```
+```bash
+# Latest Stable Version
+curl -sSL https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git-python/master/install.sh | bash
+
+# Latest Test Version (with enhanced UI)
+curl -sSL https://raw.githubusercontent.com/ruslanlap/encrypt-decrypt-git-python/test/install.sh | bash
 ## ⚙️ Installation
 
 To use this script, ensure you have OpenSSL installed on your system. If you don't have it installed, you can typically install it using your system's package manager. Here are some examples:
@@ -58,6 +77,27 @@ brew install openssl
 ### Windows
 
 For Windows, you can download OpenSSL binaries from the official OpenSSL website [here](https://www.openssl.org).
+
+## 🔐 Security Features
+- AES-256-CBC encryption algorithm
+- PBKDF2 key derivation
+- Secure password handling
+- Automatic temporary file cleanup
+- No password storage
+## 🎯 Examples
+### Basic Encryption
+```bash
+# Interactive Mode
+cryptonit
+> Choose operation: encrypt
+> Enter file path: document.pdf
+> Enter password: [hidden]
+✅ Created: document.pdf_crypt
+
+# Command Line Mode
+cryptonit encrypt document.pdf
+ ```
+
 
 ## 📝 Easy usage
 just follow the workflow ;)
@@ -146,6 +186,6 @@ python encrypt.py encrypt my_secret_file.txt
 This will encrypt the file `my_secret_file.txt` and create a new file named `my_secret_file.txt_crypt`.
 
 ## ⚠️ Disclaimer
+This tool is provided for educational and legitimate use only. Users are responsible for complying with local encryption laws and regulations.
 
-This script is for educational purposes only. While it offers basic encryption, ensure you understand the limitations and potential vulnerabilities before using it for sensitive data.
-```
+Made with ❤️ by ruslanlap
